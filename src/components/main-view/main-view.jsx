@@ -1,4 +1,8 @@
 import React from 'react';
+import axios from 'axios';
+
+import { RegistrationView } from '../registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -7,13 +11,22 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [
-        { _id: 1, Title: '12 Angry Men', Description: 'The film tells the story of a jury of 12 men.', ImagePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/157px-12_Angry_Men_%281957_film_poster%29.jpg' },
-        { _id: 2, Title: 'The Godfather', Description: 'The story chronicles the Corleone family under patriarch Vito Corleone.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/4/47/The_Godfather.jpg' },
-        { _id: 3, Title: 'Jurassic Park', Description: 'A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park\'s cloned dinosaurs to run loose.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/9/93/Jurassic_Park_%28franchise_logo%29.png' }
-      ],
-      selectedMovie: null
-    }
+      movies: [],
+      selectedMovie: null,
+      user: null,
+    };
+  }
+
+  componentDidMount() {
+    axios.get('https://blooming-flowers.herokuapp.com/movies')
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -22,16 +35,31 @@ export class MainView extends React.Component {
     });
   }
 
-  render() {
-    const { movies, selectedMovie } = this.state;
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+  onRegister(register) {
+    this.setState({
+      register
+    });
+  }
+
+  render() {
+    const { movies, selectedMovie, user, register } = this.state;
+
+    if (!user && register) return <LoginView regData={Status => this.onRegister(register)} onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user && !register) return <RegistrationView regData={Status => this.onRegister(register)} />;
+
+    if (movies.length === 0) return <div className="main-view">Loading!</div>;
     return (
       <div className="main-view">
         {selectedMovie
           ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
           : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
+            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
           ))
         }
       </div>
