@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -29,9 +29,9 @@ export class MainView extends React.Component {
       });
   }
 
-  setSelectedMovie(newSelectedMovie) {
+  setSelectedMovie(movie) {
     this.setState({
-      selectedMovie: newSelectedMovie
+      selectedMovie: movie
     });
   }
 
@@ -47,11 +47,26 @@ export class MainView extends React.Component {
     });
   }
 
-  render() {
-    const { movies, selectedMovie, user, register } = this.state;
+  onBackClick() {
+    this.setState({
+      selectedMovie: null
+    });
+  }
 
-    if (!user && register) return <LoginView regData={Status => this.onRegister(register)} onLoggedIn={user => this.onLoggedIn(user)} />;
-    if (!user && !register) return <RegistrationView regData={Status => this.onRegister(register)} />;
+  toggleRegister = (e) => {
+    e.preventDefault();
+    this.setState({
+      register: !this.state.register
+    })
+  }
+
+  render() {
+    const { movies, selectedMovie, register } = this.state;
+
+    if (register) return <RegistrationView onRegister={(register) => this.onRegister(register)} toggleRegister={this.toggleRegister} />;
+
+    if (this.state.user === null)
+      return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} toggleRegister={this.toggleRegister} />;
 
     if (movies.length === 0) return <div className="main-view">Loading!</div>;
     return (
