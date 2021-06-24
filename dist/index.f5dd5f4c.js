@@ -21860,8 +21860,8 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
+var _registrationView = require("../registration-view/registration-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 class MainView extends _reactDefault.default.Component {
@@ -21882,9 +21882,9 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    setSelectedMovie(newSelectedMovie) {
+    setSelectedMovie(movie) {
         this.setState({
-            selectedMovie: newSelectedMovie
+            selectedMovie: movie
         });
     }
     onLoggedIn(user) {
@@ -21897,25 +21897,36 @@ class MainView extends _reactDefault.default.Component {
             register
         });
     }
+    onBackClick() {
+        this.setState({
+            selectedMovie: null
+        });
+    }
+    toggleRegister = (e)=>{
+        e.preventDefault();
+        this.setState({
+            register: !this.state.register
+        });
+    };
     render() {
-        const { movies , selectedMovie , user , register  } = this.state;
-        if (!user && register) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
-            regData: (Status)=>this.onRegister(register)
+        const { movies , selectedMovie , register  } = this.state;
+        if (register) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
+            onRegister: (register1)=>this.onRegister(register1)
             ,
-            onLoggedIn: (user1)=>this.onLoggedIn(user1)
-            ,
+            toggleRegister: this.toggleRegister,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 53
+                lineNumber: 66
             },
             __self: this
         }));
-        if (!user && !register) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
-            regData: (Status)=>this.onRegister(register)
+        if (this.state.user === null) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+            onLoggedIn: (user)=>this.onLoggedIn(user)
             ,
+            toggleRegister: this.toggleRegister,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 54
+                lineNumber: 69
             },
             __self: this
         }));
@@ -21923,7 +21934,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 56
+                lineNumber: 71
             },
             __self: this
         }, "Loading!"));
@@ -21931,7 +21942,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 58
+                lineNumber: 73
             },
             __self: this
         }, selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -21941,7 +21952,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 60
+                lineNumber: 75
             },
             __self: this
         }) : movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -21952,7 +21963,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                    lineNumber: 62
+                    lineNumber: 77
                 },
                 __self: this
             })
@@ -21966,7 +21977,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","../movie-card/movie-card":"5Is5E","../movie-view/movie-view":"nLA0m","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","../login-view/login-view":"30PUh","../registration-view/registration-view":"2QBMT"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../registration-view/registration-view":"2QBMT","../login-view/login-view":"30PUh","../movie-card/movie-card":"5Is5E","../movie-view/movie-view":"nLA0m","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
@@ -23332,7 +23343,7 @@ module.exports = CancelToken;
     return typeof payload === 'object' && payload.isAxiosError === true;
 };
 
-},{}],"5Is5E":[function(require,module,exports) {
+},{}],"2QBMT":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23341,207 +23352,139 @@ helpers.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
+parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-class MovieCard extends _reactDefault.default.Component {
-    render() {
-        const { movie , onMovieClick  } = this.props;
-        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            onClick: ()=>onMovieClick(movie)
-            ,
-            className: "movie-card",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-card\\movie-card.jsx",
-                lineNumber: 8
-            },
-            __self: this
-        }, movie.Title));
-    }
+var _registrationViewScss = require("./registration-view.scss");
+var _s = $RefreshSig$();
+function RegistrationView(props) {
+    _s();
+    const [username, setUsername] = _react.useState('');
+    const [password, setPassword] = _react.useState('');
+    const [email, setEmail] = _react.useState('');
+    const [birthday, setBirthday] = _react.useState('');
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        console.log(username, password, email, birthday);
+        /* Send a request to the server for auth, then call props.onLoggedIn(username) */ props.onRegister(username);
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
+        className: "form",
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 19
+        },
+        __self: this
+    }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 20
+        },
+        __self: this
+    }, "Registration"), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        className: "input",
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 21
+        },
+        __self: this
+    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+        value: username,
+        onChange: (e)=>setUsername(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 23
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        className: "input",
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 25
+        },
+        __self: this
+    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "password",
+        value: password,
+        onChange: (e)=>setPassword(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 27
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        className: "input",
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 29
+        },
+        __self: this
+    }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "email",
+        value: email,
+        onChange: (e)=>setEmail(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 31
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
+        className: "input",
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 33
+        },
+        __self: this
+    }, "Birthday:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "date",
+        value: birthday,
+        onChange: (e)=>setBirthday(e.target.value)
+        ,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 35
+        },
+        __self: this
+    })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        type: "submit",
+        onClick: handleSubmit,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 37
+        },
+        __self: this
+    }, "Register"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        onClick: ()=>{
+            onBackClick(null);
+        },
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
+            lineNumber: 38
+        },
+        __self: this
+    }, "Back")));
 }
-MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
-        Title: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired,
-        Genre: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string.isRequired,
-            Description: _propTypesDefault.default.string
-        }).isRequired,
-        Director: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string,
-            Bio: _propTypesDefault.default.string
-        }).isRequired,
-        Actors: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string,
-            Bio: _propTypesDefault.default.string
-        }).isRequired,
-        ImagePath: _propTypesDefault.default.string.isRequired,
-        Featured: _propTypesDefault.default.bool.isRequired
-    }).isRequired,
-    onMovieClick: _propTypesDefault.default.func.isRequired
+_s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
+_c = RegistrationView;
+RegistrationView.propTypes = {
+    onRegister: _propTypesDefault.default.func.isRequired
 };
+var _c;
+$RefreshReg$(_c, "RegistrationView");
 
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","prop-types":"4dfy5"}],"4OAcP":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule') return;
-        // Skip duplicate re-exports when they have the same value.
-        if (key in dest && dest[key] === source[key]) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"5aez5":[function(require,module,exports) {
-"use strict";
-var Refresh = require('react-refresh/runtime');
-function debounce(func, delay) {
-    var args;
-    var timeout = undefined;
-    return function(args1) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args1);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module.id + ' ' + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module) {
-    if (isReactRefreshBoundary(module.exports)) {
-        registerExportsForReactRefresh(module);
-        if (module.hot) {
-            module.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module.exports;
-            });
-            module.hot.accept(function(getParents) {
-                var prevExports = module.hot.data.prevExports;
-                var nextExports = module.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module) {
-    var exports = module.exports, id = module.id;
-    Refresh.register(exports, id + ' %exports%');
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + ' %exports% ' + key);
-    }
-}
-
-},{"react-refresh/runtime":"6nJqq"}],"4dfy5":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","./registration-view.scss":"4Hdnb","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"4dfy5":[function(require,module,exports) {
 var ReactIs = require('react-is');
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
@@ -24220,104 +24163,159 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"./lib/ReactPropTypesSecret":"3OVnw"}],"nLA0m":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
+},{"./lib/ReactPropTypesSecret":"3OVnw"}],"4Hdnb":[function() {},{}],"4OAcP":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule') return;
+        // Skip duplicate re-exports when they have the same value.
+        if (key in dest && dest[key] === source[key]) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieView", ()=>MovieView
-);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-class MovieView extends _reactDefault.default.Component {
-    render() {
-        const { movie , onBackClick  } = this.props;
-        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-view",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 7
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-poster",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 8
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
-            src: movie.ImagePath,
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 9
-            },
-            __self: this
-        })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-title",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 11
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 12
-            },
-            __self: this
-        }, "Title: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 13
-            },
-            __self: this
-        }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
-            className: "movie-description",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 15
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "label",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 16
-            },
-            __self: this
-        }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
-            className: "value",
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 17
-            },
-            __self: this
-        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
-            onClick: ()=>{
-                onBackClick(null);
-            },
-            __source: {
-                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 19
-            },
-            __self: this
-        }, "Back")));
+},{}],"5aez5":[function(require,module,exports) {
+"use strict";
+var Refresh = require('react-refresh/runtime');
+function debounce(func, delay) {
+    var args;
+    var timeout = undefined;
+    return function(args1) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = undefined;
+            func.call(null, args1);
+        }, delay);
+    };
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module.id + ' ' + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module) {
+    if (isReactRefreshBoundary(module.exports)) {
+        registerExportsForReactRefresh(module);
+        if (module.hot) {
+            module.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module.exports;
+            });
+            module.hot.accept(function(getParents) {
+                var prevExports = module.hot.data.prevExports;
+                var nextExports = module.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module) {
+    var exports = module.exports, id = module.id;
+    Refresh.register(exports, id + ' %exports%');
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + ' %exports% ' + key);
     }
 }
 
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"30PUh":[function(require,module,exports) {
+},{"react-refresh/runtime":"6nJqq"}],"30PUh":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24412,7 +24410,15 @@ function LoginView(props) {
             lineNumber: 25
         },
         __self: this
-    }, "Submit")));
+    }, "Login"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        type: "secondary",
+        onClick: props.toggleRegister,
+        __source: {
+            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\login-view\\login-view.jsx",
+            lineNumber: 26
+        },
+        __self: this
+    }, "Register")));
 }
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
@@ -24421,7 +24427,8 @@ LoginView.propTypes = {
         username: _propTypesDefault.default.string.isRequired,
         password: _propTypesDefault.default.string.isRequired
     }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired
+    onLoggedIn: _propTypesDefault.default.func.isRequired,
+    onRegister: _propTypesDefault.default.func
 };
 var _c;
 $RefreshReg$(_c, "LoginView");
@@ -24431,7 +24438,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","prop-types":"4dfy5"}],"2QBMT":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","prop-types":"4dfy5"}],"5Is5E":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -24440,134 +24447,172 @@ helpers.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
 );
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _registrationViewScss = require("./registration-view.scss");
-var _s = $RefreshSig$();
-function RegistrationView(props) {
-    _s();
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
-    const [email, setEmail] = _react.useState('');
-    const [birthday, setBirthday] = _react.useState('');
-    function sendForm() {
-        alert('Thank you for your registration!');
-        let reg = true;
-        props.regData(reg);
+class MovieCard extends _reactDefault.default.Component {
+    render() {
+        const { movie , onMovieClick  } = this.props;
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            onClick: ()=>onMovieClick(movie)
+            ,
+            className: "movie-card",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-card\\movie-card.jsx",
+                lineNumber: 8
+            },
+            __self: this
+        }, movie.Title));
     }
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        console.log(username, password, email, birthday);
-        /* Send a request to the server for auth, then call props.onLoggedIn(username) */ props.onRegister(username);
-    };
-    return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
-        className: "form",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 25
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 26
-        },
-        __self: this
-    }, "Registration"), /*#__PURE__*/ _reactDefault.default.createElement("label", {
-        className: "input",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 27
-        },
-        __self: this
-    }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
-        type: "text",
-        value: username,
-        onChange: (e)=>setUsername(e.target.value)
-        ,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 29
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
-        className: "input",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 31
-        },
-        __self: this
-    }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
-        type: "password",
-        value: password,
-        onChange: (e)=>setPassword(e.target.value)
-        ,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 33
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
-        className: "input",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 35
-        },
-        __self: this
-    }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
-        type: "email",
-        value: email,
-        onChange: (e)=>setEmail(e.target.value)
-        ,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 37
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
-        className: "input",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 39
-        },
-        __self: this
-    }, "Birthday:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
-        type: "date",
-        value: birthday,
-        onChange: (e)=>setBirthday(e.target.value)
-        ,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 41
-        },
-        __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
-        type: "submit",
-        onClick: sendForm,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\registration-view\\registration-view.jsx",
-            lineNumber: 43
-        },
-        __self: this
-    }, "Register")));
 }
-_s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
-_c = RegistrationView;
-RegistrationView.PropTypes = {
-    onRegister: _propTypesDefault.default.func.isRequired
+MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+        Title: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired,
+        Genre: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Description: _propTypesDefault.default.string
+        }).isRequired,
+        Director: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string,
+            Bio: _propTypesDefault.default.string
+        }).isRequired,
+        Actors: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string,
+            Bio: _propTypesDefault.default.string
+        }).isRequired,
+        ImageURL: _propTypesDefault.default.string.isRequired,
+        Featured: _propTypesDefault.default.bool.isRequired
+    }).isRequired,
+    onMovieClick: _propTypesDefault.default.func.isRequired
 };
-var _c;
-$RefreshReg$(_c, "RegistrationView");
 
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","prop-types":"4dfy5","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","./registration-view.scss":"4Hdnb"}],"4Hdnb":[function() {},{}],"147f7":[function() {},{}]},["1j6wU","6Qxpm","7woh1"], "7woh1", "parcelRequire0e88")
+},{"react":"3b2NM","prop-types":"4dfy5","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"nLA0m":[function(require,module,exports) {
+var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView
+);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+class MovieView extends _reactDefault.default.Component {
+    render() {
+        const { movie , onBackClick  } = this.props;
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-view",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 7
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-poster",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 8
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
+            src: movie.ImageURL,
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 9
+            },
+            __self: this
+        })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-title",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 11
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 12
+            },
+            __self: this
+        }, "Title: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 13
+            },
+            __self: this
+        }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-description",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 15
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 16
+            },
+            __self: this
+        }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 17
+            },
+            __self: this
+        }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
+            className: "movie-featured",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 19
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "label",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 20
+            },
+            __self: this
+        }, "Featured: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
+            className: "value",
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 21
+            },
+            __self: this
+        }, movie.Featured)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+            onClick: ()=>{
+                onBackClick(null);
+            },
+            __source: {
+                fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
+                lineNumber: 23
+            },
+            __self: this
+        }, "Back")));
+    }
+}
+
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"3b2NM","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"147f7":[function() {},{}]},["1j6wU","6Qxpm","7woh1"], "7woh1", "parcelRequire0e88")
 
 //# sourceMappingURL=index.f5dd5f4c.js.map
