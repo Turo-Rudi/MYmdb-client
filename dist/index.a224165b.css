@@ -13,35 +13,53 @@
   margin: 10px;
   padding: 0;
 }
+
+h2 {
+  margin: auto;
+}
+
+.form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
 * {
   box-sizing: border-box;
   margin: 10px;
   padding: 0;
-}
-
-.d-grid {
-  display: grid;
-}
-
-.gap-2 {
-  gap: 1rem;
-}
-* {
-  box-sizing: border-box;
-  margin: 10px;
-  padding: 0;
-}
-
-.d-grid {
-  display: grid;
-}
-
-.gap-2 {
-  gap: 1rem;
 }
 
 h2 {
   margin: auto;
+}
+
+.form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+
+body {
+  background: url("bg.0de56303.jpg") no-repeat fixed center;
+}
+
+.navbar {
+  border-radius: 10px;
+  margin: auto;
+  padding: 0 !important;
+  opacity: 0.9;
 }
 .my-mdb {
   color: steelblue;
