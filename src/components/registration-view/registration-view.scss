@@ -4,26 +4,17 @@
   padding: 0;
 }
 
-.d-grid {
-  display: grid;
-}
-
-.gap-2 {
-  gap: 1rem;
-}
-
 h2 {
   margin: auto;
 }
-// body {
-//   background-color: lightgray;
-//   padding: 10px;
-// }
 
-// h2 {
-//   background-color: white;
-// }
-
+.form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
 // .form {
 //   display: flex;
 //   flex-direction: column;
