@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import './login-view.scss';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
 import Button from 'react-bootstrap/Button';
 
 export function LoginView(props) {
@@ -13,34 +13,38 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /* Send a request to the server for auth, then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    axios.post('https://blooming-flowers.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch(e => {
+        console.log('User cannot be found')
+      });
   };
 
   return (
-    <Form>
-      <FormGroup controlId="formBasicUsername">
+    <Form className="form">
+      <Form.Group controlId="formUsername">
         <h2>Login</h2>
-        <FormLabel>Username</FormLabel>
-        <FormControl type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-      </FormGroup>
+        <Form.Label className="input">Username</Form.Label>
+        <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} isInvalid />
+        <Form.Control.Feedback type="invalid">Please enter your username</Form.Control.Feedback>
+      </Form.Group>
 
-      <FormGroup className="mb-3" controlId="formBasicPassword">
-        <FormLabel>Password</FormLabel>
-        <FormControl type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+      <Form.Group controlId="formPassword">
+        <Form.Label className="input">Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} isInvalid />
+        <Form.Control.Feedback type="invalid">Please enter your password</Form.Control.Feedback>
         <Form.Text className="text-muted">We'll never share your password with anyone else.</Form.Text>
-      </FormGroup>
+      </Form.Group>
 
-      <div className="d-grid gap-2">
-        <Button variant="success" active type="submit" onClick={handleSubmit}>
-          Login
-        </Button>
-
-        <Button variant="success" type="submit" onClick={props.toggleRegister}>
-          Register
-        </Button>
-      </div>
+      <Button variant="success" type="submit" onClick={handleSubmit}>
+        Login
+      </Button>
     </Form>
   );
 }
