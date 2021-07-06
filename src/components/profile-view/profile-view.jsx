@@ -5,16 +5,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import './profile-view.scss';
-import { Button, Row, Col, Form } from 'react-bootstrap';
+import { Button, Card, Row, Col, Form, Container } from 'react-bootstrap';
 
 export class ProfileView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       Username: "",
       Password: "",
       Email: "",
       Birthday: "",
+      FavoriteMovies: [],
     };
   }
 
@@ -24,7 +25,7 @@ export class ProfileView extends React.Component {
   }
 
   getUsers(token) {
-    axios.get('https://blooming-flowers.herokuapp.com/users${user}', {
+    axios.get('https://blooming-flowers.herokuapp.com/users', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -34,6 +35,21 @@ export class ProfileView extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
+      });
+  }
+  removeFavorite(movie) {
+    const token = localStorage.getItem("token");
+    const url = "https://blooming-flowers.herokuapp.com/users" +
+      localStorage.getItem("user") +
+      "/movies/" +
+      movie._id;
+    axios.delete(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        console.log(response);
+        this.componentDidMount();
+        alert(movie.Title + " has been removed from your Favorites.");
       });
   }
 
@@ -57,6 +73,7 @@ export class ProfileView extends React.Component {
   handleUpdate() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
+    console.log(this.state);
     axios.put(`https://blooming-flowers.herokuapp.com/users/${user}`,
       {
         Username: this.state.Username,
@@ -80,18 +97,23 @@ export class ProfileView extends React.Component {
 
   handleChange(e) {
     let { name, value } = e.target;
+    console.log(name, value);
     this.setState({
       [name]: value
     })
   }
 
   render() {
-    const { user } = this.props;
+    const { user, movies } = this.props;
+    const FavoriteMovieList = movies.filter((movie) => {
+      return this.state.FavoriteMovies.includes(movie._id);
+    });
     return (
       <Container className="userProfile">
         <Row className="justify-content-md-center">
           <Col md={12}>
             <div className="profile-view">
+              <h2>User Details</h2>
               <div className="profile-name">
                 <span className="label">Username: </span>
                 <span className="value">{user.Username}</span>
@@ -106,30 +128,30 @@ export class ProfileView extends React.Component {
               </div>
             </div>
 
-            <Form className="justify-content-md-center mb-30">
+            <Form className="justify-content-md-center mb-30 form">
               <h2>Update Profile</h2>
               <Form.Group controlId="formUsername">
                 <Form.Label className="input">Username</Form.Label>
-                <Form.Control type="text" placeholder="Change Username" value={this.state.Username} onChange={e => this.handleChange(e)} />
+                <Form.Control type="text" name="Username" placeholder="Change Username" value={this.state.Username} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Form.Group controlId="formPassword">
                 <Form.Label className="input">Password</Form.Label>
-                <Form.Control type="text" placeholder="Change Password" value={this.state.Password} onChange={e => this.handleChange(e)} />
+                <Form.Control type="text" name="Password" placeholder="Change Password" value={this.state.Password} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Form.Group controlId="formEmail">
                 <Form.Label className="input">Email</Form.Label>
-                <Form.Control type="text" placeholder="Change Email" value={this.state.Email} onChange={e => this.handleChange(e)} />
+                <Form.Control type="text" name="Email" placeholder="Change Email" value={this.state.Email} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Form.Group controlId="formBirthday">
                 <Form.Label className="input">Birthday</Form.Label>
-                <Form.Control type="text" placeholder="Change Birthday" value={this.state.Birthday} onChange={e => this.handleChange(e)} />
+                <Form.Control type="text" name="Birthday" placeholder="Change Birthday" value={this.state.Birthday} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Link to={`/users/${this.state.Username}`}>
-                <Button variant="success" onClick={e => this.handleUpdate(e)}>
+                <Button variant="success" onClick={(e) => this.handleUpdate(e)}>
                   Save changes
                 </Button>
               </Link>
@@ -140,11 +162,33 @@ export class ProfileView extends React.Component {
                 </Button>
               </Link>
 
-              <Button variant="danger" onClick={e => this.handleDelete()}>
+              <Button variant="danger" onClick={() => this.handleDelete()}>
                 Delete user
               </Button>
 
             </Form>
+
+            <div className="favoriteMovies">
+              <Card.Text className="mt-200" as='h3'>Favorites Movies</Card.Text>
+              <Row>
+                {FavoriteMovieList.map((movie) => {
+                  return (
+                    <Col md={3} key={movie._id}>
+                      <div key={movie._id}>
+                        <Card>
+                          <Card.Body>
+                            <Link to={`/movies/${movie._id}`}>
+                              <Card.Title as='h6'>{movie.Title}</Card.Title>
+                            </Link>
+                            <Button className='mb-30' onClick={() => this.removeFavorite(movie)}>Remove</Button>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </div>
 
           </Col>
         </Row>
