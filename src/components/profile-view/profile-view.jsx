@@ -25,7 +25,7 @@ export class ProfileView extends React.Component {
   }
 
   getUsers(token) {
-    axios.get('https://blooming-flowers.herokuapp.com/users', {
+    axios.get('https://blooming-flowers.herokuapp.com/users/${user}', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -37,6 +37,7 @@ export class ProfileView extends React.Component {
         console.log(error);
       });
   }
+
   removeFavorite(movie) {
     const token = localStorage.getItem("token");
     const url = "https://blooming-flowers.herokuapp.com/users" +
@@ -104,7 +105,10 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { user, movies } = this.props;
+    const { movies } = this.props;
+    const user = localStorage.getItem("user");
+    const email = localStorage.getItem("email");
+    const birthday = localStorage.getItem("birthday");
     const FavoriteMovieList = movies.filter((movie) => {
       return this.state.FavoriteMovies.includes(movie._id);
     });
@@ -116,15 +120,15 @@ export class ProfileView extends React.Component {
               <h2>User Details</h2>
               <div className="profile-name">
                 <span className="label">Username: </span>
-                <span className="value">{user.Username}</span>
+                <span className="value">{user}</span>
               </div>
               <div className="profile-email">
                 <span className="label">Email: </span>
-                <span className="value">{user.Email}</span>
+                <span className="value">{email}</span>
               </div>
               <div className="profile-birthday">
                 <span className="label">Birthday: </span>
-                <span className="value">{user.Birthday}</span>
+                <span className="value">{birthday}</span>
               </div>
             </div>
 
