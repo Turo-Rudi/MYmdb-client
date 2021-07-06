@@ -13,10 +13,7 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 
 import './main-view.scss';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar';
+import { Row, Col, Button, Navbar } from 'react-bootstrap';
 
 export class MainView extends React.Component {
 
@@ -77,42 +74,37 @@ export class MainView extends React.Component {
     });
   }
 
-  // toggleRegister = (e) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     register: !this.state.register
-  //   })
-  // }
-
   render() {
     const { movies, user } = this.state;
 
-    //    if (register) return <RegistrationView onRegister={(register) => this.onRegister(register)} toggleRegister={this.toggleRegister} />;
-
     return (
       <Router>
-        <Navbar bg="dark">
+        <Navbar bg="light" expand="lg">
           <Navbar.Brand className="text-light">
             <Link to={`/`}>
-              <Button variant="link" className="text-light"><strong>MYmdb</strong></Button>
+              <Button variant="link" className="text-dark"><strong>MYmdb</strong></Button>
             </Link>
           </Navbar.Brand>
-          <Navbar.Collapse className="justify-content-end">
-            <Link to={`/`}>
-              <Button variant="link" className="text-light">Login</Button>
-            </Link>
-            <Link to={`/register`}>
-              <Button variant="link" className="text-light">Register</Button>
-            </Link>
-            <Link to={`/users/${user}`}>
-              <Button variant="link" className="text-light">Profile</Button>
-            </Link>
-            <Link to={`/`}>
-              <Button variant="link" className="text-light">Movies</Button>
-            </Link>
-            <Link to={`/`}>
-              <Button variant="link" className="text-light" onClick={() => { this.onLoggedOut() }}>Logout</Button>
-            </Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+            {!user && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Login</Button>
+            </Link>}
+            {!user && <Link to={`/register`}>
+              <Button variant="link" className="text-dark">Register</Button>
+            </Link>}
+            {user && <Link to={`/users/${user}`}>
+              <Button variant="link" className="text-dark">Profile</Button>
+            </Link>}
+            {user && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Movies</Button>
+            </Link>}
+            {user && <Link to={`/`}>
+              <Button variant="link" className="text-dark" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+            </Link>}
+            {user && <Navbar.Text className="text-dark">
+              Signed in as: <span className="text-dark">{user}</span>
+            </Navbar.Text>}
           </Navbar.Collapse>
         </Navbar>
 
