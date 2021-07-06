@@ -21876,7 +21876,6 @@ var _registrationView = require("../registration-view/registration-view");
 var _profileView = require("../profile-view/profile-view");
 var _directorView = require("../director-view/director-view");
 var _genreView = require("../genre-view/genre-view");
-var _navbar = require("../navbar/navbar");
 var _mainViewScss = require("./main-view.scss");
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
@@ -21884,8 +21883,8 @@ var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _navbar1 = require("react-bootstrap/Navbar");
-var _navbarDefault = parcelHelpers.interopDefault(_navbar1);
+var _navbar = require("react-bootstrap/Navbar");
+var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
@@ -21949,28 +21948,28 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 94
+                lineNumber: 93
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default, {
             bg: "dark",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 95
+                lineNumber: 94
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Brand, {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 96
+                lineNumber: 95
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 97
+                lineNumber: 96
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -21978,27 +21977,27 @@ class MainView extends _reactDefault.default.Component {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 98
+                lineNumber: 97
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("strong", {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 98
+                lineNumber: 97
             },
             __self: this
         }, "MYmdb")))), /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Collapse, {
             className: "justify-content-end",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 101
+                lineNumber: 100
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 102
+                lineNumber: 101
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22006,14 +22005,14 @@ class MainView extends _reactDefault.default.Component {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 103
+                lineNumber: 102
             },
             __self: this
         }, "Login")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/register`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 105
+                lineNumber: 104
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22021,14 +22020,14 @@ class MainView extends _reactDefault.default.Component {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 106
+                lineNumber: 105
             },
             __self: this
         }, "Register")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/users/${user}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 108
+                lineNumber: 107
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22036,14 +22035,14 @@ class MainView extends _reactDefault.default.Component {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 109
+                lineNumber: 108
             },
             __self: this
         }, "Profile")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 111
+                lineNumber: 110
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22051,14 +22050,14 @@ class MainView extends _reactDefault.default.Component {
             className: "text-light",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 112
+                lineNumber: 111
             },
             __self: this
         }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 114
+                lineNumber: 113
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22069,14 +22068,14 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 115
+                lineNumber: 114
             },
             __self: this
         }, "Logout")))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 120
+                lineNumber: 119
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22099,7 +22098,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 121
+                lineNumber: 120
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22112,7 +22111,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 133
+                lineNumber: 132
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22131,7 +22130,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 140
+                lineNumber: 139
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22153,7 +22152,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 148
+                lineNumber: 147
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22175,7 +22174,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 158
+                lineNumber: 157
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22197,7 +22196,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
-                lineNumber: 168
+                lineNumber: 167
             },
             __self: this
         }))));
@@ -22210,7 +22209,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","../movie-card/movie-card":"5Is5E","../movie-view/movie-view":"nLA0m","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","axios":"7rA65","react-router-dom":"1PMSK","../login-view/login-view":"30PUh","../registration-view/registration-view":"2QBMT","../profile-view/profile-view":"5ikGe","../director-view/director-view":"wr6y7","../genre-view/genre-view":"3BqaQ","./main-view.scss":"KtN3d","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Button":"1ru0l","react-bootstrap/Navbar":"3qLFd","../navbar/navbar":"rbnZ5"}],"5Is5E":[function(require,module,exports) {
+},{"react":"3b2NM","../movie-card/movie-card":"5Is5E","../movie-view/movie-view":"nLA0m","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5","axios":"7rA65","react-router-dom":"1PMSK","../login-view/login-view":"30PUh","../registration-view/registration-view":"2QBMT","../profile-view/profile-view":"5ikGe","../director-view/director-view":"wr6y7","../genre-view/genre-view":"3BqaQ","./main-view.scss":"KtN3d","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Button":"1ru0l","react-bootstrap/Navbar":"3qLFd"}],"5Is5E":[function(require,module,exports) {
 var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40342,161 +40341,6 @@ class GenreView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","./genre-view.scss":"69Q4F","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"69Q4F":[function() {},{}],"KtN3d":[function() {},{}],"rbnZ5":[function(require,module,exports) {
-var helpers = require("../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-// Modules
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-// React-bootstrap Components
-var _reactBootstrap = require("react-bootstrap");
-// Styles
-var _navBarScss = require("./navBar.scss");
-function NavBar({ user , onLogOut  }) {
-    return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar, {
-        bg: "dark",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 15
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Brand, {
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 16
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 17
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 18
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement("strong", {
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 18
-        },
-        __self: this
-    }, "MYmdb")))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Collapse, {
-        className: "justify-content-end",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 21
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 22
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 23
-        },
-        __self: this
-    }, "Login")), /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/register`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 25
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 26
-        },
-        __self: this
-    }, "Register")), /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/users/${user}`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 28
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 29
-        },
-        __self: this
-    }, "Profile")), /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 31
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 32
-        },
-        __self: this
-    }, "Movies")), /*#__PURE__*/ _reactDefault.default.createElement(Link, {
-        to: `/`,
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 34
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "link",
-        className: "text-light",
-        onClick: ()=>{
-            this.onLoggedOut();
-        },
-        __source: {
-            fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\navbar\\navbar.jsx",
-            lineNumber: 35
-        },
-        __self: this
-    }, "Logout")))));
-}
-_c = NavBar;
-NavBar.propTypes = {
-    user: _propTypesDefault.default.string,
-    onLogOut: _propTypesDefault.default.func
-};
-exports.default = NavBar;
-var _c;
-$RefreshReg$(_c, "NavBar");
-
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./navBar.scss":"7gKfi","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"7gKfi":[function() {},{}],"147f7":[function() {},{}]},["1j6wU","6Qxpm","7woh1"], "7woh1", "parcelRequire0e88")
+},{"react":"3b2NM","./genre-view.scss":"69Q4F","react-bootstrap/Button":"1ru0l","react-bootstrap/Card":"1CZWQ","@parcel/transformer-js/src/esmodule-helpers.js":"4OAcP","../../../../../../AppData/Roaming/nvm/v14.16.1/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5aez5"}],"69Q4F":[function() {},{}],"KtN3d":[function() {},{}],"147f7":[function() {},{}]},["1j6wU","6Qxpm","7woh1"], "7woh1", "parcelRequire0e88")
 
 //# sourceMappingURL=index.f5dd5f4c.js.map
