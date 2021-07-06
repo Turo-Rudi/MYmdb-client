@@ -29362,7 +29362,7 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __self: this
         }, "Password"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-            type: "text",
+            type: "password",
             name: "Password",
             placeholder: "Change Password",
             value: this.state.Password,
@@ -29388,7 +29388,7 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __self: this
         }, "Email"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-            type: "text",
+            type: "email",
             name: "Email",
             placeholder: "Change Email",
             value: this.state.Email,
@@ -29414,7 +29414,7 @@ class ProfileView extends _reactDefault.default.Component {
             },
             __self: this
         }, "Birthday"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
-            type: "text",
+            type: "date",
             name: "Birthday",
             placeholder: "Change Birthday",
             value: this.state.Birthday,
