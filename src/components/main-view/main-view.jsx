@@ -138,7 +138,7 @@ export class MainView extends React.Component {
 
           <Route path="/users/:userId" render={({ match, history }) => {
             if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            if (!user) return <Col>
+            if (user) return <Col>
               <ProfileView onLoggedIn={user => this.onLoggedIn(user)}
                 movies={movies} user={user} onBackClick={() => history.goBack()} />
             </Col>
