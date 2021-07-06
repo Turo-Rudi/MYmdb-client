@@ -137,17 +137,17 @@ export class ProfileView extends React.Component {
 
               <Form.Group controlId="formPassword">
                 <Form.Label className="input">Password</Form.Label>
-                <Form.Control type="text" name="Password" placeholder="Change Password" value={this.state.Password} onChange={e => this.handleChange(e)} />
+                <Form.Control type="password" name="Password" placeholder="Change Password" value={this.state.Password} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Form.Group controlId="formEmail">
                 <Form.Label className="input">Email</Form.Label>
-                <Form.Control type="text" name="Email" placeholder="Change Email" value={this.state.Email} onChange={e => this.handleChange(e)} />
+                <Form.Control type="email" name="Email" placeholder="Change Email" value={this.state.Email} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Form.Group controlId="formBirthday">
                 <Form.Label className="input">Birthday</Form.Label>
-                <Form.Control type="text" name="Birthday" placeholder="Change Birthday" value={this.state.Birthday} onChange={e => this.handleChange(e)} />
+                <Form.Control type="date" name="Birthday" placeholder="Change Birthday" value={this.state.Birthday} onChange={e => this.handleChange(e)} />
               </Form.Group>
 
               <Link to={`/users/${this.state.Username}`}>
