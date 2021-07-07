@@ -21937,7 +21937,7 @@ class MainView extends _reactDefault.default.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.setState({
-            user: null
+            Username: null
         });
     }
     onRegister(register) {
@@ -21946,7 +21946,7 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , user  } = this.state;
+        const { movies , user , Username  } = this.state;
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22004,7 +22004,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 106
             },
             __self: this
-        }, !user && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, !Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22019,7 +22019,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 108
             },
             __self: this
-        }, "Login")), !user && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Login")), !Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/register`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22034,8 +22034,8 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 111
             },
             __self: this
-        }, "Register")), user && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
-            to: `/users/${user}`,
+        }, "Register")), Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+            to: `/users/${Username}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
                 lineNumber: 113
@@ -22049,7 +22049,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 114
             },
             __self: this
-        }, "Profile")), user && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Profile")), Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22064,7 +22064,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 117
             },
             __self: this
-        }, "Movies")), user && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
+        }, "Movies")), Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22082,7 +22082,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 120
             },
             __self: this
-        }, "Logout")), user && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Text, {
+        }, "Logout")), Username && /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Navbar.Text, {
             className: "text-dark",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22096,7 +22096,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 123
             },
             __self: this
-        }, user)))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
+        }, Username)))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\main-view\\main-view.jsx",
@@ -22107,7 +22107,7 @@ class MainView extends _reactDefault.default.Component {
             exact: true,
             path: "/",
             render: ()=>{
-                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                if (!Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
@@ -22129,7 +22129,7 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/register",
             render: ()=>{
-                if (user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Redirect, {
+                if (Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Redirect, {
                     to: "/"
                 }));
                 return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, null)));
@@ -22145,7 +22145,7 @@ class MainView extends _reactDefault.default.Component {
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
                     className: "main-view"
                 }, "Loading!"));
-                if (user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.ProfileView, {
+                if (Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.ProfileView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                     ,
                     movies: movies,
@@ -22161,7 +22161,7 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/movies/:movieId",
             render: ({ match , history  })=>{
-                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                if (!Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
@@ -22184,7 +22184,7 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/directors/:name",
             render: ({ match , history  })=>{
-                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                if (!Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
@@ -22206,7 +22206,7 @@ class MainView extends _reactDefault.default.Component {
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
             path: "/genres/:name",
             render: ({ match , history  })=>{
-                if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+                if (!Username) return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                 })));
                 if (movies.length === 0) return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
@@ -26107,9 +26107,6 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
 class MovieView extends _reactDefault.default.Component {
-    state = {
-        favorite: null
-    };
     handleAdd() {
         const token = localStorage.getItem("token");
         const user = localStorage.getItem("user");
@@ -26120,9 +26117,6 @@ class MovieView extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             alert(this.props.movie.Title + " has been added to your favorites!");
-            this.setState({
-                favorite: true
-            });
         });
     }
     handleRemove() {
@@ -26139,14 +26133,15 @@ class MovieView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movie , onBackClick  } = this.props;
-        const { favorite  } = this.state;
+        const { movie , onBackClick , FavoriteMovies  } = this.props;
+        console.log(FavoriteMovies);
+        const Favorite = FavoriteMovies.includes(movie._id);
         return(/*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
             bg: "light",
             border: "dark",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 48
+                lineNumber: 43
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
@@ -26154,59 +26149,59 @@ class MovieView extends _reactDefault.default.Component {
             src: movie.ImageURL,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 49
+                lineNumber: 44
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 51
+                lineNumber: 46
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 52
+                lineNumber: 47
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 53
+                lineNumber: 48
             },
             __self: this
         }, movie.Description), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 54
+                lineNumber: 49
             },
             __self: this
         }, movie.Featured), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/directors/${movie.Director.Name}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 56
+                lineNumber: 51
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "success",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 57
+                lineNumber: 52
             },
             __self: this
         }, "Director")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/genres/${movie.Genre.Name}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 59
+                lineNumber: 54
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "success",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 60
+                lineNumber: 55
             },
             __self: this
         }, "Genre")), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -26216,45 +26211,45 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 63
+                lineNumber: 58
             },
             __self: this
         }, "Back")), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Footer, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 66
+                lineNumber: 61
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 67
+                lineNumber: 62
             },
             __self: this
-        }, !favorite && /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        }, !Favorite && /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "outline-success",
             onClick: ()=>this.handleAdd(movie)
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 68
+                lineNumber: 63
             },
             __self: this
         }, "Add to favorites")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 70
+                lineNumber: 65
             },
             __self: this
-        }, favorite && /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+        }, Favorite && /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "outline-danger",
             onClick: ()=>this.handleRemove(movie)
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\movie-view\\movie-view.jsx",
-                lineNumber: 71
+                lineNumber: 66
             },
             __self: this
         }, "Remove from favorites")))));
@@ -29165,7 +29160,6 @@ class ProfileView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-        this.getUser(token);
     }
     removeFavorite(movie) {
         const url = `https://blooming-flowers.herokuapp.com/users/${user}/movies/${movie._id}`;
@@ -29231,124 +29225,124 @@ class ProfileView extends _reactDefault.default.Component {
             className: "userProfile",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 95
+                lineNumber: 93
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             className: "justify-content-md-center",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 96
+                lineNumber: 94
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
             md: 12,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 97
+                lineNumber: 95
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "profile-view",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 98
+                lineNumber: 96
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 99
+                lineNumber: 97
             },
             __self: this
         }, "User Details"), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "profile-name",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 100
+                lineNumber: 98
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 101
+                lineNumber: 99
             },
             __self: this
         }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 102
+                lineNumber: 100
             },
             __self: this
         }, user1.Username)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "profile-email",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 104
+                lineNumber: 102
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 105
+                lineNumber: 103
             },
             __self: this
         }, "Email: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 106
+                lineNumber: 104
             },
             __self: this
         }, user1.Email)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "profile-birthday",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 108
+                lineNumber: 106
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 109
+                lineNumber: 107
             },
             __self: this
         }, "Birthday: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 110
+                lineNumber: 108
             },
             __self: this
         }, user1.Birthday))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form, {
             className: "justify-content-md-center mb-30 form",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 114
+                lineNumber: 112
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h2", {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 115
+                lineNumber: 113
             },
             __self: this
         }, "Update Profile"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "formUsername",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 116
+                lineNumber: 114
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             className: "input",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 117
+                lineNumber: 115
             },
             __self: this
         }, "Username"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -29360,21 +29354,21 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 118
+                lineNumber: 116
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "formPassword",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 121
+                lineNumber: 119
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             className: "input",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 122
+                lineNumber: 120
             },
             __self: this
         }, "Password"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -29386,21 +29380,21 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 123
+                lineNumber: 121
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "formEmail",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 126
+                lineNumber: 124
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             className: "input",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 127
+                lineNumber: 125
             },
             __self: this
         }, "Email"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -29412,21 +29406,21 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 128
+                lineNumber: 126
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Group, {
             controlId: "formBirthday",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 131
+                lineNumber: 129
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Label, {
             className: "input",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 132
+                lineNumber: 130
             },
             __self: this
         }, "Birthday"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Form.Control, {
@@ -29438,14 +29432,14 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 133
+                lineNumber: 131
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/users/${this.state.Username}`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 136
+                lineNumber: 134
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -29454,21 +29448,21 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 137
+                lineNumber: 135
             },
             __self: this
         }, "Save changes")), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/`,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 142
+                lineNumber: 140
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
             variant: "secondary",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 143
+                lineNumber: 141
             },
             __self: this
         }, "Back to movies")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -29477,14 +29471,14 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 148
+                lineNumber: 146
             },
             __self: this
         }, "Delete user")), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "favoriteMovies",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 154
+                lineNumber: 152
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Text, {
@@ -29492,13 +29486,13 @@ class ProfileView extends _reactDefault.default.Component {
             as: "h3",
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 155
+                lineNumber: 153
             },
             __self: this
         }, "Favorites Movies"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
             __source: {
                 fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                lineNumber: 156
+                lineNumber: 154
             },
             __self: this
         }, FavoriteMovieList.map((movie)=>{
@@ -29507,40 +29501,40 @@ class ProfileView extends _reactDefault.default.Component {
                 key: movie._id,
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 159
+                    lineNumber: 157
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
                 key: movie._id,
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 160
+                    lineNumber: 158
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card, {
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 161
+                    lineNumber: 159
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Body, {
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 162
+                    lineNumber: 160
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
                 to: `/movies/${movie._id}`,
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 163
+                    lineNumber: 161
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Card.Title, {
                 as: "h6",
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 164
+                    lineNumber: 162
                 },
                 __self: this
             }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Button, {
@@ -29549,7 +29543,7 @@ class ProfileView extends _reactDefault.default.Component {
                 ,
                 __source: {
                     fileName: "C:\\Users\\Andi\\Documents\\careerfoundry\\MYmdb-client\\src\\components\\profile-view\\profile-view.jsx",
-                    lineNumber: 166
+                    lineNumber: 164
                 },
                 __self: this
             }, "Remove"))))));
