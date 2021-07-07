@@ -9,6 +9,10 @@ import Card from 'react-bootstrap/Card';
 
 export class MovieView extends React.Component {
 
+  state = {
+    favorite: null
+  }
+
   handleAdd() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
@@ -17,8 +21,10 @@ export class MovieView extends React.Component {
       { headers: { Authorization: `Bearer ${token}` } }
     )
       .then((response) => {
-        console.log(response);
         alert(this.props.movie.Title + " has been added to your favorites!");
+        this.setState({
+          favorite: true
+        });
       })
   }
 
@@ -37,6 +43,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie, onBackClick } = this.props;
+    const { favorite } = this.state;
     return (
       <Card bg="light" border="dark">
         <Card.Img variant="top" src={movie.ImageURL} />
@@ -58,10 +65,10 @@ export class MovieView extends React.Component {
 
         <Card.Footer>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="outline-success" onClick={() => this.handleAdd(movie)}>Add to favorites</Button>
+            {!favorite && <Button variant="outline-success" onClick={() => this.handleAdd(movie)}>Add to favorites</Button>}
           </Link>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="outline-danger" onClick={() => this.handleRemove(movie)}>Remove from favorites</Button>
+            {favorite && <Button variant="outline-danger" onClick={() => this.handleRemove(movie)}>Remove from favorites</Button>}
           </Link>
         </Card.Footer>
 
