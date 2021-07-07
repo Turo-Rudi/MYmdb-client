@@ -21,7 +21,8 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      user: null
+      user: null,
+      Username: "",
     };
   }
 
@@ -39,20 +40,36 @@ export class MainView extends React.Component {
       });
   }
 
+  getUser(token) {
+    const Username = localStorage.getItem("user");
+    axios.get(`https://blooming-flowers.herokuapp.com/users/${Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.setState({
-        user: localStorage.getItem('user')
+        Username: localStorage.getItem('user')
       });
       this.getMovies(accessToken);
     }
+    this.getUser(accessToken);
   }
 
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username
+      Username: authData.user.Username
     });
 
     localStorage.setItem('token', authData.token);
@@ -142,7 +159,7 @@ export class MainView extends React.Component {
             </Col>
             if (movies.length === 0) return <div className="main-view">Loading!</div>;
             return <Col md={8}>
-              <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+              <MovieView FavoriteMovies={user.FavoriteMovies} movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
             </Col>
           }} />
 
