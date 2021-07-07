@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import './profile-view.scss';
 import { Button, Card, Row, Col, Form, Container } from 'react-bootstrap';
 
+const token = localStorage.getItem("token");
+const user = localStorage.getItem("user");
+
 export class ProfileView extends React.Component {
   constructor(props) {
     super(props);
@@ -20,30 +23,12 @@ export class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    let token = localStorage.getItem("token");
-    this.getUsers(token);
-  }
 
-  getUsers(token) {
-    axios.get('https://blooming-flowers.herokuapp.com/users/${user}', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        this.setState({
-          users: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    this.getUser(token);
   }
 
   removeFavorite(movie) {
-    const token = localStorage.getItem("token");
-    const url = "https://blooming-flowers.herokuapp.com/users" +
-      localStorage.getItem("user") +
-      "/movies/" +
-      movie._id;
+    const url = `https://blooming-flowers.herokuapp.com/users/${user}/movies/${movie._id}`
     axios.delete(url, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -55,8 +40,6 @@ export class ProfileView extends React.Component {
   }
 
   handleDelete() {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
     axios.delete(`https://blooming-flowers.herokuapp.com/users/${user}`,
       { headers: { Authorization: `Bearer ${token}` } }
     )
@@ -72,8 +55,6 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate() {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
     console.log(this.state);
     axios.put(`https://blooming-flowers.herokuapp.com/users/${user}`,
       {
@@ -105,12 +86,10 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { movies } = this.props;
-    const user = localStorage.getItem("user");
-    const email = localStorage.getItem("email");
-    const birthday = localStorage.getItem("birthday");
+    const { user, movies } = this.props;
+    console.log(user);
     const FavoriteMovieList = movies.filter((movie) => {
-      return this.state.FavoriteMovies.includes(movie._id);
+      return user.FavoriteMovies.includes(movie._id);
     });
     return (
       <Container className="userProfile">
@@ -120,15 +99,15 @@ export class ProfileView extends React.Component {
               <h2>User Details</h2>
               <div className="profile-name">
                 <span className="label">Username: </span>
-                <span className="value">{user}</span>
+                <span className="value">{user.Username}</span>
               </div>
               <div className="profile-email">
                 <span className="label">Email: </span>
-                <span className="value">{email}</span>
+                <span className="value">{user.Email}</span>
               </div>
               <div className="profile-birthday">
                 <span className="label">Birthday: </span>
-                <span className="value">{birthday}</span>
+                <span className="value">{user.Birthday}</span>
               </div>
             </div>
 
