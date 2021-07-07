@@ -23,8 +23,6 @@ export class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-
-    this.getUser(token);
   }
 
   removeFavorite(movie) {

@@ -9,10 +9,6 @@ import Card from 'react-bootstrap/Card';
 
 export class MovieView extends React.Component {
 
-  state = {
-    favorite: null
-  }
-
   handleAdd() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
@@ -22,10 +18,7 @@ export class MovieView extends React.Component {
     )
       .then((response) => {
         alert(this.props.movie.Title + " has been added to your favorites!");
-        this.setState({
-          favorite: true
-        });
-      })
+      });
   }
 
   handleRemove() {
@@ -42,10 +35,12 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onBackClick } = this.props;
-    const { favorite } = this.state;
+    const { movie, onBackClick, FavoriteMovies } = this.props;
+    console.log(FavoriteMovies);
+    const Favorite = FavoriteMovies.includes(movie._id);
+
     return (
-      <Card bg="light" border="dark">
+      <Card bg="light" border="dark" >
         <Card.Img variant="top" src={movie.ImageURL} />
 
         <Card.Body>
@@ -65,10 +60,10 @@ export class MovieView extends React.Component {
 
         <Card.Footer>
           <Link to={`/movies/${movie._id}`}>
-            {!favorite && <Button variant="outline-success" onClick={() => this.handleAdd(movie)}>Add to favorites</Button>}
+            {!Favorite && <Button variant="outline-success" onClick={() => this.handleAdd(movie)}>Add to favorites</Button>}
           </Link>
           <Link to={`/movies/${movie._id}`}>
-            {favorite && <Button variant="outline-danger" onClick={() => this.handleRemove(movie)}>Remove from favorites</Button>}
+            {Favorite && <Button variant="outline-danger" onClick={() => this.handleRemove(movie)}>Remove from favorites</Button>}
           </Link>
         </Card.Footer>
 
