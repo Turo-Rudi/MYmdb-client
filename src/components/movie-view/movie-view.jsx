@@ -36,7 +36,6 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie, onBackClick, FavoriteMovies } = this.props;
-    console.log(FavoriteMovies);
     const Favorite = FavoriteMovies.includes(movie._id);
 
     return (
