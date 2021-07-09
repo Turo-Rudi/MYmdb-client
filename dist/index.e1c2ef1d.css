@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+
+h2 {
+  margin: auto;
+}
+
+.form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+
+h2 {
+  margin: auto;
+}
+
+.form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
+.profile-view,
+.favoriteMovies {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+  opacity: 0.9;
+}
+
+.form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+
+body {
+  background: url("bg.0de56303.jpg") no-repeat fixed center;
+}
+
+.navbar {
+  border-radius: 10px;
+  margin: auto;
+  padding: 0 !important;
+  opacity: 0.9;
+}
+* {
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 0;
+}
+.my-mdb {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.e1c2ef1d.css.map */
