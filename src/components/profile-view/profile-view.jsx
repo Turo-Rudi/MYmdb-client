@@ -53,7 +53,6 @@ export class ProfileView extends React.Component {
   }
 
   handleUpdate() {
-    console.log(this.state);
     axios.put(`https://blooming-flowers.herokuapp.com/users/${user}`,
       {
         Username: this.state.Username,
@@ -66,7 +65,6 @@ export class ProfileView extends React.Component {
       .then((response) => {
         const data = response.data;
         localStorage.setItem("user", data.Username);
-        console.log(data);
         alert(user + " has been updated!");
         console.log(response);
       })
@@ -77,7 +75,6 @@ export class ProfileView extends React.Component {
 
   handleChange(e) {
     let { name, value } = e.target;
-    console.log(name, value);
     this.setState({
       [name]: value
     })
@@ -85,7 +82,6 @@ export class ProfileView extends React.Component {
 
   render() {
     const { user, movies } = this.props;
-    console.log(user);
     const FavoriteMovieList = movies.filter((movie) => {
       return user.FavoriteMovies.includes(movie._id);
     });
@@ -105,7 +101,7 @@ export class ProfileView extends React.Component {
               </div>
               <div className="profile-birthday">
                 <span className="label">Birthday: </span>
-                <span className="value">{user.Birthday}</span>
+                <span className="value">{user.Birthday.slice(0, 10)}</span>
               </div>
             </div>
 
@@ -161,7 +157,7 @@ export class ProfileView extends React.Component {
                             <Link to={`/movies/${movie._id}`}>
                               <Card.Title as='h6'>{movie.Title}</Card.Title>
                             </Link>
-                            <Button className='mb-30' onClick={() => this.removeFavorite(movie)}>Remove</Button>
+                            <Button variant="danger" className='mb-30' onClick={() => this.removeFavorite(movie)}>Remove</Button>
                           </Card.Body>
                         </Card>
                       </div>
