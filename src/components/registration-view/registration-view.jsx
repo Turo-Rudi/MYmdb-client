@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import './registration-view.scss';
 import Form from 'react-bootstrap/Form';
@@ -90,6 +91,11 @@ export function RegistrationView(props) {
       </Form.Group>
 
       <Button variant="success" active type="submit" onClick={handleSubmit}>Register</Button>
+      <br /><br />
+      <Link to={`/`}>
+        <Button variant="secondary" className="text-light">Back</Button>
+      </Link>
+
     </Form>
   );
 }
