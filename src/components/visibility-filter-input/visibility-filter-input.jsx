@@ -9,7 +9,7 @@ function VisibilityFilterInput(props) {
   return <Form.Control
     onChange={e => props.setFilter(e.target.value)}
     value={props.visibilityFilter}
-    placeholder="search for movies" />;
+    placeholder="filter" />;
 }
 
 export default connect(
