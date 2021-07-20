@@ -16,7 +16,6 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-import { NavBar } from '../nav-bar/nav-bar';
 
 import './main-view.scss';
 import { Row, Col, Button, Navbar } from 'react-bootstrap';
@@ -96,14 +95,37 @@ class MainView extends React.Component {
     let { movies, user } = this.props;
 
     return (
-
       <Router>
-        <Col>
-          <NavBar />
-        </Col>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand className="text-light">
+            <Link to={`/`}>
+              <Button variant="link" className="text-dark"><strong>MYmdb</strong></Button>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+            {!Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Login</Button>
+            </Link>}
+            {!Username && <Link to={`/register`}>
+              <Button variant="link" className="text-dark">Register</Button>
+            </Link>}
+            {Username && <Link to={`/users/${Username}`}>
+              <Button variant="link" className="text-dark">Profile</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Movies</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+            </Link>}
+            {Username && <Navbar.Text className="text-dark">
+              Signed in as: <span className="text-dark">{Username}</span>
+            </Navbar.Text>}
+          </Navbar.Collapse>
+        </Navbar>
 
         <Row className="main-view justify-content-md-center">
-
           <Route exact path="/" render={() => {
             if (!Username) return <Col>
               <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
