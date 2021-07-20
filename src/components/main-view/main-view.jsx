@@ -1,40 +1,190 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+
+import './main-view.scss';
+import { Row, Col, Button, Navbar } from 'react-bootstrap';
 
 export class MainView extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      movies: [
-        { _id: 1, Title: '12 Angry Men', Description: 'The film tells the story of a jury of 12 men.', ImagePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/157px-12_Angry_Men_%281957_film_poster%29.jpg' },
-        { _id: 2, Title: 'The Godfather', Description: 'The story chronicles the Corleone family under patriarch Vito Corleone.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/4/47/The_Godfather.jpg' },
-        { _id: 3, Title: 'Jurassic Park', Description: 'A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park\'s cloned dinosaurs to run loose.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/9/93/Jurassic_Park_%28franchise_logo%29.png' }
-      ],
-      selectedMovie: null
-    }
+      movies: [],
+      user: null,
+      Username: "",
+    };
   }
 
-  setSelectedMovie(newSelectedMovie) {
+  getMovies(token) {
+    axios.get('https://blooming-flowers.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  getUser(token) {
+    const Username = localStorage.getItem("user");
+    axios.get(`https://blooming-flowers.herokuapp.com/users/${Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        Username: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+    this.getUser(accessToken);
+  }
+
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      selectedMovie: newSelectedMovie
+      Username: authData.user.Username
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      Username: null
+    });
+  }
+
+  onRegister(register) {
+    this.setState({
+      register
     });
   }
 
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, user, Username } = this.state;
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
     return (
-      <div className="main-view">
-        {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
-          ))
-        }
-      </div>
+      <Router>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand className="text-light">
+            <Link to={`/`}>
+              <Button variant="link" className="text-dark"><strong>MYmdb</strong></Button>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+            {!Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Login</Button>
+            </Link>}
+            {!Username && <Link to={`/register`}>
+              <Button variant="link" className="text-dark">Register</Button>
+            </Link>}
+            {Username && <Link to={`/users/${Username}`}>
+              <Button variant="link" className="text-dark">Profile</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Movies</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+            </Link>}
+            {Username && <Navbar.Text className="text-dark">
+              Signed in as: <span className="text-dark">{Username}</span>
+            </Navbar.Text>}
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Row className="main-view justify-content-md-center">
+          <Route exact path="/" render={() => {
+            if (!Username) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view">Loading!</div>;
+            return movies.map(m => (
+              <Col md={3} key={m._id} >
+                <MovieCard movie={m} />
+              </Col>
+            ))
+          }} />
+
+          <Route path="/register" render={() => {
+            if (Username) return <Redirect to="/" />
+            return <Col>
+              <RegistrationView />
+            </Col>
+          }} />
+
+          <Route path="/users/:userId" render={({ match, history }) => {
+            if (movies.length === 0) return <div className="main-view">Loading!</div>;
+            if (Username) return <Col>
+              <ProfileView onLoggedIn={user => this.onLoggedIn(user)}
+                movies={movies} user={user} onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+          <Route path="/movies/:movieId" render={({ match, history }) => {
+            if (!Username) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view">Loading!</div>;
+            return <Col md={8}>
+              <MovieView FavoriteMovies={user.FavoriteMovies} movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+          <Route path="/directors/:name" render={({ match, history }) => {
+            if (!Username) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view">Loading!</div>;
+            return <Col md={8}>
+              <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+          <Route path="/genres/:name" render={({ match, history }) => {
+            if (!Username) return <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+            if (movies.length === 0) return <div className="main-view">Loading!</div>;
+            return <Col md={8}>
+              <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
+            </Col>
+          }} />
+
+        </Row>
+      </Router>
     );
   }
 }
