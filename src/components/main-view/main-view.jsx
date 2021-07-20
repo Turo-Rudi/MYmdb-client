@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -16,7 +17,7 @@ import { GenreView } from '../genre-view/genre-view';
 import { NavView } from '../nav-view/nav-view';
 
 import './main-view.scss';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, Navbar } from 'react-bootstrap';
 
 class MainView extends React.Component {
 
@@ -94,64 +95,41 @@ class MainView extends React.Component {
 
     return (
       <Router>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand className="text-light">
+            <Link to={`/`}>
+              <Button variant="link" className="text-dark"><strong>MYmdb</strong></Button>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+            {!Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Login</Button>
+            </Link>}
+            {!Username && <Link to={`/register`}>
+              <Button variant="link" className="text-dark">Register</Button>
+            </Link>}
+            {Username && <Link to={`/users/${Username}`}>
+              <Button variant="link" className="text-dark">Profile</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark">Movies</Button>
+            </Link>}
+            {Username && <Link to={`/`}>
+              <Button variant="link" className="text-dark" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+            </Link>}
+            {Username && <Navbar.Text className="text-dark">
+              Signed in as: <span className="text-dark">{Username}</span>
+            </Navbar.Text>}
+          </Navbar.Collapse>
+        </Navbar>
+
         <Row>
           <Col>
             <NavView />
           </Col>
         </Row>
-        <Row className="main-view justify-content-md-center">
-          <Route exact path="/" render={() => {
-            if (!Username) return <Col>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
-            if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            return <MoviesList movies={movies} />
-          }} />
 
-          <Route path="/register" render={() => {
-            if (Username) return <Redirect to="/" />
-            return <Col>
-              <RegistrationView />
-            </Col>
-          }} />
-
-          <Route path="/users/:userId" render={({ history }) => {
-            if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            if (Username) return <Col>
-              <ProfileView onLoggedIn={user => this.onLoggedIn(user)}
-                movies={movies} user={user} onBackClick={() => history.goBack()} />
-            </Col>
-          }} />
-
-          <Route path="/movies/:movieId" render={({ match, history }) => {
-            if (!Username) return
-            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            return <Col md={8}>
-              <MovieView FavoriteMovies={user.FavoriteMovies} movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
-            </Col>
-          }} />
-
-          <Route path="/directors/:name" render={({ match, history }) => {
-            if (!Username) return <Col>
-              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
-            if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            return <Col md={8}>
-              <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
-            </Col>
-          }} />
-
-          <Route path="/genres/:name" render={({ match, history }) => {
-            if (!Username) return
-            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            if (movies.length === 0) return <div className="main-view">Loading!</div>;
-            return <Col md={8}>
-              <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
-            </Col>
-          }} />
-
-        </Row>
       </Router>
     );
   }
