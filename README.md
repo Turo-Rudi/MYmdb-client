@@ -1,6 +1,6 @@
 <h1>Objective</h1>
 <br>
-<p>Using React, build the client-side for an application called myFlix based on its existing server-side code (REST API and database).</p>
+<p>It is the SPA client-side for a web application called MYmdb using React. It is based on its existing server-side code (MYmdb-server, REST API and database).</p>
 <h1>Stack used</h1>
 <br>
 <p>MERN (MongoDB, Express, React, Node.js)</p>
